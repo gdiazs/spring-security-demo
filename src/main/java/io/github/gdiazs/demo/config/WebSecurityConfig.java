@@ -15,21 +15,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.inMemoryAuthentication()
-        .withUser("gdiaz")
-        .password("$2a$10$JBx29.cZWYhB8MvxCEbEA.tZvvFh5BH/c1Ld8bYqJ0TFw3ZiTPTK6")
-        .roles("ADMIN");
+    auth.inMemoryAuthentication().withUser("gdiaz")
+        .password("$2a$10$JBx29.cZWYhB8MvxCEbEA.tZvvFh5BH/c1Ld8bYqJ0TFw3ZiTPTK6").roles("ADMIN");
   }
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.authorizeHttpRequests()
-        .antMatchers("/login", "/resources/**")
-        .permitAll()
-        .antMatchers("/help")
-        .hasRole("ADMIN")
-        .antMatchers("/**")
-        .authenticated();
+    	.antMatchers("/login", "/resources/**")
+    	.permitAll()
+        .antMatchers("/help").hasRole("ADMIN")
+        .antMatchers("/**").authenticated();
 
     http.formLogin().loginPage("/login").loginProcessingUrl("/authenticate");
   }
