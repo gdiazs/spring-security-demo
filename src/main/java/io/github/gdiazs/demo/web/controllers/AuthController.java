@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class AuthController {
 
-	@GetMapping("/login")
-	public String goHome() {
-		return "auth/login";
-	}
-	
-	@PostMapping("/login")
-	public String dologin() {
-		System.out.println("POST");
-		return "auth/login";
-	}	
+  @GetMapping("/login")
+  public String goHome() {
+    return "auth/login";
+  }
+
+  @PostMapping("/login")
+  public String dologin() {
+    System.out.println("POST");
+    return "auth/login";
+  }
 }

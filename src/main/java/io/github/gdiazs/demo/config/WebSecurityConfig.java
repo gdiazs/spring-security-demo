@@ -11,29 +11,29 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("gdiaz")
-				.password("$2a$10$JBx29.cZWYhB8MvxCEbEA.tZvvFh5BH/c1Ld8bYqJ0TFw3ZiTPTK6").roles("ADMIN");
+  @Override
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    auth.inMemoryAuthentication()
+        .withUser("gdiaz")
+        .password("$2a$10$JBx29.cZWYhB8MvxCEbEA.tZvvFh5BH/c1Ld8bYqJ0TFw3ZiTPTK6")
+        .roles("ADMIN");
+  }
 
-	}
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.authorizeHttpRequests()
+        .antMatchers("/app/login", "/resources/**")
+        .permitAll()
+        .antMatchers("/app/help")
+        .hasRole("ADMIN")
+        .anyRequest()
+        .authenticated();
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests()
-			.antMatchers("/app/login", "/resources/**").permitAll()
-			.antMatchers("/app/help").hasRole("ADMIN")
-			.anyRequest().authenticated();
-		
-		http.formLogin()
-			.loginPage("/app/login")
-			.loginProcessingUrl("/app/authenticate");
+    http.formLogin().loginPage("/app/login").loginProcessingUrl("/app/authenticate");
+  }
 
-	}
-
-	@Bean
-	public PasswordEncoder getPasswordEncoder() {
-		return new BCryptPasswordEncoder(10);
-	}
-
+  @Bean
+  public PasswordEncoder getPasswordEncoder() {
+    return new BCryptPasswordEncoder(10);
+  }
 }
