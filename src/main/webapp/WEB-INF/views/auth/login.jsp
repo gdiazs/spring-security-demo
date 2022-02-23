@@ -1,8 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <body>
-	<h2>Custom Login Form</h2>
+	<h2>Custom Login Form</h2>	
 	<form method="post" action="${pageContext.request.contextPath}/app/authenticate">
 		<div>email</div>
 		<div>
@@ -17,4 +16,3 @@
 	</form>
 </body>
 </html>
-

@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class HomeController {
 
-	private final SampleService sampleService;
+  private final SampleService sampleService;
 
-	public HomeController(SampleService sampleService) {
-		this.sampleService = sampleService;
-	}
+  public HomeController(SampleService sampleService) {
+    this.sampleService = sampleService;
+  }
 
-	@GetMapping
-	public String goHome() {
-		this.sampleService.sayHello();
-		return "index";
-	}
+  @GetMapping
+  public String goHome() {
+    this.sampleService.sayHello();
+    return "index";
+  }
 }
