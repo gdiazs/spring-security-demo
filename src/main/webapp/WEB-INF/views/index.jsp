@@ -1,5 +1,11 @@
+<!DOCTYPE html>
 <html>
-<body>
-	<h2>Hello World!</h2>
+<head>
+<jsp:include page="/WEB-INF/layouts/default/styles.jsp" />
+	
+</head>
+<body class="bg-secondary">
+	<jsp:include page="/WEB-INF/layouts/default/navbar.jsp" />
+	<jsp:include page="/WEB-INF/layouts/default/scripts.jsp" />
 </body>
 </html>
