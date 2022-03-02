@@ -5,7 +5,9 @@ import javax.servlet.Filter;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class DemoWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class DemoWebApplicationInitializer
+		extends
+			AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
@@ -14,17 +16,18 @@ public class DemoWebApplicationInitializer extends AbstractAnnotationConfigDispa
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class<?>[] { WebConfig.class };
+		return new Class<?>[]{WebConfig.class};
 	}
 
 	@Override
 	protected String[] getServletMappings() {
-		return new String[] { "/" };
+		return new String[]{"/"};
 	}
 
 	@Override
 	protected Filter[] getServletFilters() {
-		var securityFilterChain = new DelegatingFilterProxy("springSecurityFilterChain");
-		return new Filter[] { securityFilterChain };
+		var securityFilterChain = new DelegatingFilterProxy(
+				"springSecurityFilterChain");
+		return new Filter[]{securityFilterChain};
 	}
 }
